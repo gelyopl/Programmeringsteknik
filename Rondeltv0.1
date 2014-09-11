@@ -1,0 +1,33 @@
+mening1 = input("Skriv mening nr 1: ")
+mening2 = input("Skriv mening nr 2: ")
+mening3 = input("Skriv mening nr 3: ")
+mening4 = input("Skriv mening nr 4: ")
+
+	
+	
+def split(SentenceSplit): #Splitar mening[0] till en list med varje ord försig
+    list = SentenceSplit.split()
+
+    return list
+	
+def upper(mening): #Gör första 4 ord i första mening stora
+	ny_mening = mening.upper()
+	return ny_mening
+    
+def dikt():
+	print(FirstFourUpper)
+	print()
+	print(SplitFirstSentence[5:])
+	print(SplitFirstSentence[:4])
+	print(mening2)
+	print(mening3)
+	print(mening4)
+	print(SplitFirstSentence[:4])
+
+SplitFirstSentence = split(mening1)
+FirstFourUpper = upper(SplitFirstSentence[:4])
+
+dikt()
+
+
+
