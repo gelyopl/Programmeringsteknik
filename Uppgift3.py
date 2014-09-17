@@ -1,3 +1,10 @@
+# Programmeringsteknik webbkurs KTH inlämningsuppgift 3.
+# Axel Qvarfordt
+# 14/9-2014
+# Nöjesfält
+
+# <Programkod>
+
 import random
 import math
 
@@ -6,12 +13,12 @@ HAVERI = 10; #Hur troligt det är att attraktionen går sönder
 
 #Klasserna
 
-class Gaest:
+class Gaest: #Gäst
 	def __init__(self, namn, laengd):
 			self.namn = namn
 			self.laengd = laengd
 
-class Saellskap:
+class Saellskap: #Sällskap
 	def __init__(self):
 		self.gaester = []
 		
@@ -21,7 +28,7 @@ class Saellskap:
 	def laeggTillGaest(self,namn,laengd):
 		self.gaester.append(Gaest(namn, laengd))
 		
-class Attraktion:
+class Attraktion: #Attraktioner
 	def __init__(self, namn, minLaengd, pirrfaktor):
 		self.namn = namn
 		self.minLaengd = minLaengd
@@ -60,17 +67,14 @@ class Attraktion:
 	def getpirrfaktor(self):
 		return self.pirrfaktor
 		
-
-
-		
 class Park:
 	def __init__(self,namn):	
 		self.namn = namn
 		self.attraktioner = []
 		
 	def __iter__(self):
-			return iter(self.attraktioner)
-			
+		return iter(self.attraktioner)
+		
 	def __getitem__(self,key):
 		return self.attraktioner[key-1]
 		
@@ -79,47 +83,43 @@ class Park:
 		
 	def laeggTillattraktion(self,namn,minLaengd,pirrfaktor):
 		self.attraktioner.append(Attraktion(namn,minLaengd,pirrfaktor))
-		
-
-		
 
 # Dags för loopar för leklander
 
-
 parkObjekt = Park("Superskojiga lekalandet")
 saellskapObjekt = Saellskap()
+print("Välkommen till", parkObjekt.namn)
 
+Toggle = True	#Toggle för att sätta igång loopen, stänger av toggle när det blir korrekt inmatning. Kmr inte ur loopen innan korrekt inmatning.
+while  Toggle:
+	n = input("Hur många är ni? ")
+	if n.isnumeric():
+		n = int(n)
+		Toggle = False
+		for i in range(n):
+			ToggleLeangd = True
+			print("Skriv in namnet på gäst", i+1,":",end=" ")
+			namn = input()
+			while ToggleLeangd:
+				print("Skriv in längden på", namn, "i CM:",end=" ")
+				laengd = input()
+				if laengd.isnumeric():
+					saellskapObjekt.laeggTillGaest(namn,int(laengd))
+					ToggleLeangd = False
+				else:
+					print("Du måste skriva in korrekt längd i siffror, testa igen")
+	else:
+		print("Du måste skriva in ett korrekt tal, testa igen")
+		
+
+#Skapar åka attraktioner
 #Attraktioner, namn, längd, pirrhetfaktor
 parkObjekt.laeggTillattraktion("Fritt fall", 150, 10)
 parkObjekt.laeggTillattraktion("Nyckelpigan", 90, 2)
 parkObjekt.laeggTillattraktion("Blå Tåget", 105, 5)
 parkObjekt.laeggTillattraktion("Balder", 140, 7)
 
-
-print("Välkommen till", parkObjekt.namn)
-
-#Hur många dom är och längden. Stannar i loopen tills man har svarat korrekt
-korrektinmatning = False
-while  not korrektinmatning:
-	n = input("Hur många är ni? ")
-	if n.isnumeric():
-		n = int(n)
-		korrektinmatning = True
-		for i in range(n):
-			korrektLaengd = False
-			print("Skriv in namnet på gäst", i+1,":",end=" ")
-			namn = input()
-			while not korrektLaengd:
-				print("Skriv in längden på", namn, "i CM:",end=" ")
-				laengd = input()
-				if laengd.isnumeric():
-					saellskapObjekt.laeggTillGaest(namn,int(laengd))
-					korrektLaengd = True
-				else:
-					print("Du måste skriva in korrekt längd i siffror, testa igen")
-	else:
-		print("Du måste skriva in ett korrekt tal, testa igen")
-		
+	
 # Programmet
 koer = True
 while koer:
